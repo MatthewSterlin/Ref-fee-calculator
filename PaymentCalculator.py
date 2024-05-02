@@ -7,6 +7,7 @@
 import csv
 import requests
 from bs4 import BeautifulSoup
+import subprocess
 
 # URL of the webpage containing the table
 url = "https://www.justinlauer.net/assignmentsPSJ.html"
@@ -83,12 +84,10 @@ if response.status_code == 200:
                 csv_writer.writerow([f"{official}", f"${total_pay}"])
         
         print("Data has been written to officials_pay.csv successfully.")
+        
+        # Opens the CSV file
+        subprocess.run(["open", "officials_pay.csv"])
     else:
-        print("No assignemnts posted.")
+        print("No assignments posted.")
 else:
     print("Failed to fetch the webpage. Status code:", response.status_code)
-
-
-
-
-
